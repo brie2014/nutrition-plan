@@ -19,6 +19,7 @@ app.use((req, res, next) => {
 app.use('/food', foodRoutes)
 
 //mongodb connection example 
+// adding a comment for a test
 // mongoose
 //     .connect('mongodb+srv://brie2014:Ilovebackend@cluster0.gn4ni.mongodb.net/social?retryWrites=true&w=majority')
 //     .then(app.listen(8080))
