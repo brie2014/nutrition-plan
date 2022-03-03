@@ -18,4 +18,9 @@ app.use((req, res, next) => {
 // app.use('/user', userRoutes)
 app.use('/food', foodRoutes)
 
+//mongodb connection example 
+// mongoose
+//     .connect('mongodb+srv://brie2014:Ilovebackend@cluster0.gn4ni.mongodb.net/social?retryWrites=true&w=majority')
+//     .then(app.listen(8080))
+//     .catch(err => console.log(err))
 app.listen(8080)
