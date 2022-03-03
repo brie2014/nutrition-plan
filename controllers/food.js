@@ -2,7 +2,7 @@ exports.getAllFoods = (req, res, next) => {
     //get food from db and return in res 
     res.status(200).json({
         //food data goes here
-        message: "All the foods!"
+        message: "All the good foods!"
     })
 }
 
