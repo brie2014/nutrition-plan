@@ -20,8 +20,7 @@ app.use('/food', foodRoutes)
 
 //mongodb connection example 
 // adding a comment for a test
-// mongoose
-//     .connect('mongodb+srv://brie2014:Ilovebackend@cluster0.gn4ni.mongodb.net/social?retryWrites=true&w=majority')
-//     .then(app.listen(8080))
-//     .catch(err => console.log(err))
-app.listen(8080)
+mongoose
+    .connect('mongodb+srv://healthNut32::workingHard@cluster0.7opmt.mongodb.net/DietData')
+    .then(app.listen(8080))
+    .catch(err => console.log(err))
