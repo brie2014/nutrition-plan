@@ -1,7 +1,8 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const mongoose = require('mongoose')
 
-const userRoutes = require('./routes/user')
+const authRoutes = require('./routes/auth')
 const foodRoutes = require('./routes/food')
 
 const app = express()
@@ -15,7 +16,7 @@ app.use((req, res, next) => {
     next()
 })
 
-// app.use('/user', userRoutes)
+app.use('/auth', authRoutes)
 app.use('/food', foodRoutes)
 
 //mongodb connection example 

@@ -1,2 +1,25 @@
 // Returns all the food
 GET http://localhost:8080/food
+
+// Sign up as a user 
+PUT http://localhost:8080/auth/signup
+{
+    "email": "test@email.com",
+    "name": "Bri",
+    "password": "password"
+}
+
+// Login as a user
+POST http://localhost:8080/auth/login
+{
+    "email": "test@email.com",
+    "password": "password"
+}
+/* Returns a token and userId
+{"token":"tokenExample123","userId":"userIdExample123"}
+
+Token and userId can then be stored on client (such as in local storage)
+Also set an expiration for the token
+
+Send token in headers with requests that require authorization
+headers: {Authorization: `Bearer ${token}` } */
