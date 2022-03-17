@@ -8,7 +8,7 @@ const router = express.Router()
 router.get('/', foodController.getAllFoods)
 
 // POST /food
-router.post('/', foodController.createFood)
+router.post('/add-food', foodController.createFood)
 
 
 module.exports = router

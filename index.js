@@ -22,6 +22,6 @@ app.use('/food', foodRoutes)
 //mongodb connection example 
 // adding a comment for a test
 mongoose
-    .connect('mongodb+srv://healthNut32:workingHard@cluster0.7opmt.mongodb.net/test')
+    .connect('mongodb+srv://healthNut32:workingHard@cluster0.7opmt.mongodb.net/DietData')
     .then(app.listen(8080))
     .catch(err => console.log(err))

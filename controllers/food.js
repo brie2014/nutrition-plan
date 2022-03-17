@@ -1,9 +1,25 @@
+const Food = require('../models/food');
+
 exports.getAllFoods = (req, res, next) => {
-    //get food from db and return in res 
-    res.status(200).json({
-        //food data goes here
-        message: "All the good foods!"
+    // get food from db and return in res 
+    // res.status(200).json({
+    //     //food data goes here
+    //     message: "All the good foods!"
+    // })
+
+
+    Food.find()
+    .then(individualFoodItem => {
+      console.log(individualFoodItem);
+      res.status(200).json({
+          food: individualFoodItem
+      });
     })
+    .catch(err => {
+      const error = new Error(err);
+      error.httpStatusCode = 404;
+      return next(error);
+    });
 }
 
 exports.createFood = (req, res, next) => {
