@@ -1,6 +1,18 @@
 // Returns all the food
 GET http://localhost:8080/food
 
+// Returns a single food item by food id (steak in this case)
+GET http://localhost:8080/food/62326b5bc563adc8d8ec32e6
+
+// Adds a single food item **INCOMPLETE**
+POST http://localhost:8080/food/add-food
+{
+    "calories": "Put number",
+    "name": "Put name",
+    "description": "Put description",
+    "imageURL": ""
+}
+
 // Sign up as a user 
 PUT http://localhost:8080/auth/signup
 {
