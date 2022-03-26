@@ -13,5 +13,7 @@ router.get('/:id', foodController.getFoodItem)
 // POST /food
 router.post('/add-food', foodController.createFood)
 
+// DELETE /food
+router.delete('/delete/:id', foodController.deleteFood)
 
 module.exports = router
