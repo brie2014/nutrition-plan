@@ -17,21 +17,6 @@ app.use((req, res, next) => {
     next()
 })
 
-const cors = require('cors') 
-const corsOptions = {
-    origin: "https://nutrition-plan2022.herokuapp.com/",
-    optionsSuccessStatus: 200
-};
-app.use(cors(corsOptions));
-
-const options = {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-    family: 4
-};
-
 app.use('/auth', authRoutes)
 app.use('/food', foodRoutes)
 app.use('/', (req,res)=>{
