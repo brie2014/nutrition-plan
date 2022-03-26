@@ -30,7 +30,8 @@ mongoose
     .connect(process.env.MONGO_URL)
     .then(app.listen(PORT))
     .then(console.log('connected to database'))
-    //.env files contains the following:
+    //heroku link: https://nutrition-plan2022.herokuapp.com/
+    //.env file contains the following:
     //MONGO_URL=mongodb+srv://healthNut32:workingHard@cluster0.7opmt.mongodb.net/DietData
     //PORT=8080
     //secretKey=somesupersecretsecret
