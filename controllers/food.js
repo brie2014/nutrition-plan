@@ -19,6 +19,11 @@ exports.getFoodItem = (req, res, next) => {
     const fId = req.params.id;
     Food.findById(fId)
     .then(food => {
+        if(!food) {
+            const error = new Error('Could not find food');
+            error.statusCode = 404;
+            throw error;
+        }
         console.log(food);
         res.status(200).json({
           food: food
@@ -58,6 +63,28 @@ exports.createFood = (req, res, next) => {
         }
         next(err)
     })
+}
+
+exports.deleteFood = (req, res, next) => {
+    const fId = req.params.id;
+    Food.findById(fId)
+    .then(food => {
+        if(!food) {
+            const error = new Error('Could not find food');
+            error.statusCode = 404;
+            throw error;
+        }
+        return Food.findByIdAndRemove(fId);
+    })
+    .then(result => {
+        console.log(result);
+        res.status(200).json({message: 'Successfully deleted'})
+    })
+    .catch(err => {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    });
 }
 
 
