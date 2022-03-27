@@ -1,6 +1,11 @@
+//home page
+GET http://localhost:8080
+
+###
 // Returns array of all the food items
 GET http://localhost:8080/food
 
+### 
 // Returns a single food item by food id 
 GET http://localhost:8080/food/:foodId
 # Example food id: 62326b5bc563adc8d8ec32e6 (steak in this case)
