@@ -18,6 +18,13 @@ const foodSchema = new Schema({
     type: String,
     required: false
   },
+  creator: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  },
+}, {
+  timestamps: true
 });
 
 module.exports = mongoose.model('food', foodSchema);

@@ -1,6 +1,7 @@
 const express = require('express')
 
 const foodController = require('../controllers/food')
+const isAuth = require('../middleware/is-auth')
 
 const router = express.Router()
 
@@ -11,9 +12,9 @@ router.get('/', foodController.getAllFoods)
 router.get('/:id', foodController.getFoodItem)
 
 // POST /food
-router.post('/add-food', foodController.createFood)
+router.post('/add-food', isAuth, foodController.createFood)
 
 // DELETE /food
-router.delete('/delete/:id', foodController.deleteFood)
+router.delete('/delete/:id', isAuth, foodController.deleteFood)
 
 module.exports = router

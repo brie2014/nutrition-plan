@@ -14,10 +14,10 @@ const userSchema = new Schema({
         type: String,
         rquired: true
     },
-    // foods: [{
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'Post'
-    // }],
+    foods: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Food'
+    }],
 }, {
     timestamps: true
 })

@@ -1,6 +1,3 @@
-//home page
-GET http://localhost:8080
-
 ###
 // Returns array of all the food items
 GET http://localhost:8080/food
@@ -8,27 +5,20 @@ GET http://localhost:8080/food
 ### 
 // Returns a single food item by food id 
 GET http://localhost:8080/food/:foodId
-# Example food id: 62326b5bc563adc8d8ec32e6 (steak in this case)
+# Example food id: 62326b5bc563adc8d8ec32e6 (sushi roll in this case)
 # Example of returned data
-# "food": {
-#     "_id": "62326b5bc563adc8d8ec32e6",
-#     "calories": "679",
-#     "name": "steak",
-#     "description": "so juicy!",
-#     "imageURL": ""
+# {
+#     "food": {
+#         "_id": "6240e38c83ab8b2b1ac9982b",
+#         "calories": "235",
+#         "name": "Philadelphia Roll",
+#         "description": "Smoked salmon, cream cheese, and avocado",
+#         "creator": "62317ce9f7367829b79573e0",
+#         "createdAt": "2022-03-27T22:22:04.579Z",
+#         "updatedAt": "2022-03-27T22:22:04.579Z",
+#         "__v": 0
+#     }
 # }
-
-// Adds a single food item **INCOMPLETE**
-POST http://localhost:8080/food/add-food
-{
-    "calories": "Put number",
-    "name": "Put name",
-    "description": "Put description",
-    "imageURL": ""
-}
-
-// Deletes a single food item by food id
-DELETE http://localhost:8080/food/delete/:foodId
 
 // Sign up as a user 
 PUT http://localhost:8080/auth/signup
@@ -52,3 +42,24 @@ Also set an expiration for the token
 
 Send token in headers with requests that require authorization
 headers: {Authorization: `Bearer ${token}` } */
+
+
+
+### Protected Routes
+# Send token in headers with requests that require authorization
+# headers: {Authorization: `Bearer ${token}` } 
+# Checks for logged in user and then stores userId in req.userId
+
+// Adds a single food item 
+POST http://localhost:8080/food/add-food
+{
+    "calories": "Put number",
+    "name": "Put name",
+    "description": "Put description",
+    "imageURL": "optional"
+}
+
+
+// Deletes a single food item by food id (current userId must match the food's creator)
+DELETE http://localhost:8080/food/delete/:foodId
+
