@@ -6,6 +6,27 @@ const PORT = process.env.PORT || 8080
 const authRoutes = require('./routes/auth')
 const foodRoutes = require('./routes/food')
 
+const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+
+// Extended: https://swagger.io/specification/#infoObject
+const swaggerOptions = {
+    swaggerDefinition: {
+        info: {
+            title: 'Nutrition Plan API - CS341, Team 5',
+            description: 'Final project. API information for nutrition plan API',
+            contact: {
+                name: 'BYU-I, CS341, Fall 2021, Team 5'
+            },
+            servers: ["http://localhost:8080"]
+        }
+    },
+    apis: ['./routes/*.js']
+};
+
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+
+
 const app = express()
 
 app.use(bodyParser.json()) // application/json
@@ -19,6 +40,7 @@ app.use((req, res, next) => {
 
 app.use('/auth', authRoutes)
 app.use('/food', foodRoutes)
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use('/', (req,res)=>{
     res.send('Welcome to my Nutritional plan')
 })

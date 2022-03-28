@@ -24,7 +24,7 @@ GET http://localhost:8080/food/:foodId
 PUT http://localhost:8080/auth/signup
 {
     "email": "test@email.com",
-    "name": "Bri",
+    "name": "Team-5",
     "password": "password"
 }
 
