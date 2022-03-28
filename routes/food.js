@@ -10,6 +10,7 @@ const router = express.Router();
  * @swagger
  * /food:
  *  get:
+ *      tags: ['Food']
  *      description: Returns All Foods
  *      responses:
  *          '200':
@@ -24,6 +25,7 @@ router.get("/", foodController.getAllFoods);
  * @swagger
  * /food/{fId}:
  *  get:
+ *      tags: ['Food']
  *      description: Returns a single food
  *      parameters:
  *        - in: path
@@ -45,6 +47,7 @@ router.get("/:id", foodController.getFoodItem);
  * @swagger
  * /food/add-food:
  *  post:
+ *      tags: ['Food']
  *      description: Add a food to the list
  *      parameters:
  *        - in: cookie
@@ -66,6 +69,27 @@ router.get("/:id", foodController.getFoodItem);
 router.post("/add-food", isAuth, foodController.createFood);
 
 // DELETE /food
+/** 
+ * @swagger
+ * /food/delete/{fId}:
+ *  delete:
+ *      tags: ['Food']
+ *      description: Delete a single food
+ *      parameters:
+ *        - in: path
+ *          name: fId
+ *          required: true
+ *          description: The id of the food to be deleted
+ *      responses:
+ *          '200':
+ *              description: Food deleted.
+ *          '403':
+ *              description: User not authorized to delete food.
+ *          '404':
+ *              description: Food not found.
+ *          '500':
+ *              description: System error.
+ */ 
 router.delete("/delete/:id", isAuth, foodController.deleteFood);
 
 // Get foods for a user

@@ -12,6 +12,7 @@ const router = express.Router()
  * @swagger
  * /signup:
  *  put:
+ *      tags: ['Authentication']
  *      description: Sign up a new user
  *      responses:
  *          '201':
@@ -49,6 +50,7 @@ router.put('/signup', [
  * @swagger
  * /login:
  *  post:
+ *      tags: ['Authentication']
  *      description: Login as a user
  *      responses:
  *          '200':

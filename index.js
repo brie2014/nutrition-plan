@@ -12,6 +12,16 @@ const swaggerUi = require('swagger-ui-express');
 // Extended: https://swagger.io/specification/#infoObject
 const swaggerOptions = {
     swaggerDefinition: {
+        tags: [
+            {
+                "name": "Authentication",
+                "description": "Endpoints"
+            },
+            {
+                "name": "Food",
+                "description": "Endpoints"
+            }
+        ],
         info: {
             title: 'Nutrition Plan API - CS341, Team 5',
             description: 'Final project. API information for nutrition plan API',
