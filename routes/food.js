@@ -20,4 +20,7 @@ router.delete("/delete/:id", isAuth, foodController.deleteFood);
 // Get foods for a user
 router.get("/:userId", isAuth, foodController.getAllUserFoods);
 
+// UPDATE /food
+router.put("/update/:id", isAuth, foodController.updateFood);
+
 module.exports = router;

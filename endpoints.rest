@@ -66,3 +66,11 @@ POST http://localhost:8080/food/add-food
 // Deletes a single food item by food id (current userId must match the food's creator)
 DELETE http://localhost:8080/food/delete/:foodId
 
+// Updates a single food item by food id (current userId must match the food's creator)
+PUT http://localhost:8080/food/update/:foodId
+{
+    "calories": "Change it",
+    "name": "Different name",
+    "description": "Different Description",
+    "imageURL": "Different URL"
+}

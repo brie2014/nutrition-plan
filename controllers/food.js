@@ -126,3 +126,41 @@ exports.getAllUserFoods = (req, res, next) => {
       return next(error);
     });
 };
+
+exports.updateFood = (req, res, next) => {
+  const fId = req.params.id;
+  const calories = req.body.calories;
+  const name = req.body.name;
+  const description = req.body.description;
+  const imageUrl = req.body.imageUrl;
+ 
+  Food.findById(fId)
+    .then(food => {
+      if (!food){
+        const error = new Error('Did not find the food.');
+        error.statusCode = 404;
+        throw error;
+      }
+      if (food.creator.toString() !== req.userId) {
+        const error = new Error(
+          "You do not have permission to update this food."
+        );
+        error.statusCode = 403;
+        throw error;
+      }
+      food.calories = calories;
+      food.name = name;
+      food.description = description;
+      food.imageUrl = imageUrl;
+      return food.save(); 
+    })
+    .then(result => {
+      res.status(200).json({ message: 'Food updated!', food: result });
+    })
+    .catch(err => {
+      if (!err.statusCode) {
+        err.statusCode = 500;
+      }
+      next(err);
+    });
+};
