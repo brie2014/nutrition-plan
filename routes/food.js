@@ -93,9 +93,47 @@ router.post("/add-food", isAuth, foodController.createFood);
 router.delete("/delete/:id", isAuth, foodController.deleteFood);
 
 // Get foods for a user
-router.get("/:userId", isAuth, foodController.getAllUserFoods);
+/** 
+ * @swagger
+ * /food/user/{userId}:
+ *  get:
+ *      tags: ['Food']
+ *      description: Returns all foods for a user
+ *      parameters:
+ *        - in: path
+ *          name: userId
+ *          required: true
+ *          description: The id of the user
+ *      responses:
+ *          '200':
+ *              description: All user food returned
+ *          '404':
+ *              description: Food not found.
+ */ 
+router.get("/user/:userId", isAuth, foodController.getAllUserFoods);
 
 // UPDATE /food
+/** 
+ * @swagger
+ * /food/update/{fId}:
+ *  put:
+ *      tags: ['Food']
+ *      description: Edit a single food
+ *      parameters:
+ *        - in: path
+ *          name: fId
+ *          required: true
+ *          description: The id of the food to be edited
+ *      responses:
+ *          '200':
+ *              description: Food updated.
+ *          '403':
+ *              description: User not authorized to delete food.
+ *          '404':
+ *              description: Food not found.
+ *          '500':
+ *              description: System error.
+ */ 
 router.put("/update/:id", isAuth, foodController.updateFood);
 
 module.exports = router;
