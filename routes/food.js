@@ -1,20 +1,23 @@
-const express = require('express')
+const express = require("express");
 
-const foodController = require('../controllers/food')
-const isAuth = require('../middleware/is-auth')
+const foodController = require("../controllers/food");
+const isAuth = require("../middleware/is-auth");
 
-const router = express.Router()
+const router = express.Router();
 
 // GET /foods
-router.get('/', foodController.getAllFoods)
+router.get("/", foodController.getAllFoods);
 
 // //GET Single food item by ID
-router.get('/:id', foodController.getFoodItem)
+router.get("/:id", foodController.getFoodItem);
 
 // POST /food
-router.post('/add-food', isAuth, foodController.createFood)
+router.post("/add-food", isAuth, foodController.createFood);
 
 // DELETE /food
-router.delete('/delete/:id', isAuth, foodController.deleteFood)
+router.delete("/delete/:id", isAuth, foodController.deleteFood);
 
-module.exports = router
+// Get foods for a user
+router.get("/:userId", isAuth, foodController.getAllUserFoods);
+
+module.exports = router;
