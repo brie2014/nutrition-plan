@@ -49,6 +49,9 @@ headers: {Authorization: `Bearer ${token}` } */
 # Send token in headers with requests that require authorization
 # headers: {Authorization: `Bearer ${token}` } 
 # Checks for logged in user and then stores userId in req.userId
+// Gets all foods created by that user
+Get http://localhost:8080/food/:userId
+
 
 // Adds a single food item 
 POST http://localhost:8080/food/add-food
