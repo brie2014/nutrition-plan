@@ -3,6 +3,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const PORT = process.env.PORT || 8080
+const MONGODB_URI = process.env.MONGODB_URI || "YOUR MONGO DB URI";
 const authRoutes = require('./routes/auth')
 const foodRoutes = require('./routes/food')
 
@@ -55,17 +56,10 @@ app.use('/', (req,res)=>{
     res.send('Welcome to my Nutritional plan')
 })
 
-//mongodb connection example 
-// adding a comment for a test
+// Start server
 mongoose
-    //.connect('mongodb+srv://healthNut32:workingHard@cluster0.7opmt.mongodb.net/DietData')
-    .connect(process.env.MONGO_URI)
+    .connect(MONGODB_URI)
     .then(app.listen(PORT))
     .then(console.log('connected to database'))
-    //heroku link: https://nutrition-plan2022.herokuapp.com/
-    //.env file contains the following:
-    //MONGO_URI=mongodb+srv://healthNut32:workingHard@cluster0.7opmt.mongodb.net/DietData
-    //PORT=8080
-    //secretKey=somesupersecretsecret
     
     .catch(err => console.log(err))
