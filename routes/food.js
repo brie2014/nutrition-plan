@@ -50,19 +50,38 @@ router.get("/:id", foodController.getFoodItem);
  * @swagger
  * /food/add-food:
  *  post:
+ *      security:
+ *        - bearerAuth: []
  *      tags: ['Food']
  *      description: Add a food to the list
- *      parameters:
- *        - in: cookie
- *          name: debug
- *          schema:
- *              type: integer
- *              enum: [0, 1]
- *              default: 0
- *        - in: cookie
- *          name: csrftoken
- *          schema:
- *              type: string
+ *      requestBody:
+ *          required: true
+ *          content:
+ *              application/json:
+ *                 schema:
+ *                   type: object
+ *                   properties:
+ *                     calories:
+ *                        type: string
+ *                     name:
+ *                        type: string
+ *                     description:
+ *                        type: string
+ *                     imageURL:
+ *                        type: string
+ *                   required:
+ *                     - calories
+ *                     - name
+ *                     - description
+ *                     - imageURL
+ *                   example:
+ *                      calories: 300
+ *                      name: Cesar Salad
+ *                      description: Lots of Romaine Lettuce
+ *                      imageURL: https://duckduckgo.com
+ *                 encoding:
+ *                  style: form
+ *                  explode: false
  *      responses:
  *          '201':
  *              description: Food added to list
@@ -82,6 +101,8 @@ router.post("/add-food", isAuth, [
  * @swagger
  * /food/delete/{fId}:
  *  delete:
+ *      security:
+ *        - bearerAuth: []
  *      tags: ['Food']
  *      description: Delete a single food
  *      parameters:
@@ -106,6 +127,8 @@ router.delete("/delete/:id", isAuth, foodController.deleteFood);
  * @swagger
  * /food/user/{userId}:
  *  get:
+ *      security:
+ *        - bearerAuth: []
  *      tags: ['Food']
  *      description: Returns all foods for a user
  *      parameters:
@@ -126,6 +149,8 @@ router.get("/user/:userId", isAuth, foodController.getAllUserFoods);
  * @swagger
  * /food/update/{fId}:
  *  put:
+ *      security:
+ *        - bearerAuth: []
  *      tags: ['Food']
  *      description: Edit a single food
  *      parameters:
@@ -133,6 +158,34 @@ router.get("/user/:userId", isAuth, foodController.getAllUserFoods);
  *          name: fId
  *          required: true
  *          description: The id of the food to be edited
+ *      requestBody:
+ *          required: true
+ *          content:
+ *              application/json:
+ *                 schema:
+ *                   type: object
+ *                   properties:
+ *                     calories:
+ *                        type: string
+ *                     name:
+ *                        type: string
+ *                     description:
+ *                        type: string
+ *                     imageURL:
+ *                        type: string
+ *                   required:
+ *                     - calories
+ *                     - name
+ *                     - description
+ *                     - imageURL
+ *                   example:
+ *                      calories: 3000
+ *                      name: Monster Muffin
+ *                      description: Only for the brave
+ *                      imageURL: No-image-available
+ *                 encoding:
+ *                  style: form
+ *                  explode: false
  *      responses:
  *          '200':
  *              description: Food updated.

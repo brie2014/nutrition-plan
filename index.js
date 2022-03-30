@@ -2,8 +2,8 @@ require('dotenv').config()
 const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
-const PORT = process.env.PORT || 8080
-const MONGODB_URI = process.env.MONGODB_URI || "YOUR MONGO DB URI";
+const PORT = process.env.PORT
+const MONGODB_URI = process.env.MONGODB_URI;
 const authRoutes = require('./routes/auth')
 const foodRoutes = require('./routes/food')
 
@@ -13,6 +13,7 @@ const swaggerUi = require('swagger-ui-express');
 // Extended: https://swagger.io/specification/#infoObject
 const swaggerOptions = {
     swaggerDefinition: {
+        openapi: '3.0.0',
         tags: [
             {
                 "name": "Authentication",
@@ -23,13 +24,24 @@ const swaggerOptions = {
                 "description": "Endpoints"
             }
         ],
+        components: {
+            securitySchemes: {
+                bearerAuth: {
+                    type: 'http',
+                    scheme: 'bearer',
+                    bearerFormat: 'JWT'
+              },
+            },
+        },
         info: {
             title: 'Nutrition Plan API - CS341, Team 5',
+            version: '1.0.0',
             description: 'Final project. API information for nutrition plan API',
             contact: {
                 name: 'BYU-I, CS341, Fall 2021, Team 5'
             },
-            servers: [process.env.SWAG_SERVER || "http://localhost:8080"]
+            // servers: ["localhost:5000"]
+            servers: [process.env.SWAG_SERVER]
         }
     },
     apis: ['./routes/*.js']

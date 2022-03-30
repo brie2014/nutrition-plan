@@ -11,22 +11,46 @@ const isAuth = require('../middleware/is-auth')
 const router = express.Router()
 /** 
  * @swagger
- * /signup:
+ * /auth/signup:
  *  put:
  *      tags: ['Authentication']
- *      description: Sign up a new user
+ *      description: Sign up a new user.
+ *      requestBody:
+ *          required: true
+ *          content:
+ *              application/json:
+ *                 schema:
+ *                   type: object
+ *                   properties:
+ *                     email:
+ *                        type: string
+ *                     password:
+ *                        type: string
+ *                     name:
+ *                        type: string
+ *                   required:
+ *                     - email
+ *                     - password
+ *                     - name
+ *                   example:
+ *                      email: nobody@byui.edu
+ *                      password: password
+ *                      name: Student
+ *                 encoding:
+ *                  style: form
+ *                  explode: false
  *      responses:
  *          '201':
  *              description: User created.
  *          '422':
- *              description: Validation failed
+ *              description: Custom Validation Failed
  *          '500':
  *              description: System error  
  */  
 router.put('/signup', [
     body('email')
     .isEmail()
-    .withMessage('Please enter a valid email')
+    // .withMessage('Please enter a valid email')
     .custom((value, {
         req
     }) => {
@@ -49,10 +73,30 @@ router.put('/signup', [
 
 /** 
  * @swagger
- * /login:
+ * /auth/login:
  *  post:
  *      tags: ['Authentication']
- *      description: Login as a user
+ *      description: Login as a user.
+ *      requestBody:
+ *          required: true
+ *          content:
+ *              application/json:
+ *                 schema:
+ *                   type: object
+ *                   properties:
+ *                     email:
+ *                        type: string
+ *                     password:
+ *                        type: string
+ *                   required:
+ *                     - email
+ *                     - password
+ *                   example:
+ *                      email: test@email.com
+ *                      password: password
+ *                 encoding:
+ *                  style: form
+ *                  explode: false
  *      responses:
  *          '200':
  *              description: Logged in and token loaded.
