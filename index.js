@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT
 const authRoutes = require('./routes/auth')
 const foodRoutes = require('./routes/food')
 
@@ -28,7 +28,7 @@ const swaggerOptions = {
             contact: {
                 name: 'BYU-I, CS341, Fall 2021, Team 5'
             },
-            servers: ["http://localhost:8080"]
+            servers: [process.env.SWAG_SERVER || "http://localhost:8080"]
         }
     },
     apis: ['./routes/*.js']
