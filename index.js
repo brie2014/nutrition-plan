@@ -28,7 +28,7 @@ const swaggerOptions = {
             contact: {
                 name: 'BYU-I, CS341, Fall 2021, Team 5'
             },
-            servers: ["http://localhost:8080"]
+            servers: [process.env.SWAG_SERVER || "http://localhost:8080"]
         }
     },
     apis: ['./routes/*.js']
