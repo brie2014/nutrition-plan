@@ -59,12 +59,12 @@ app.use('/', (req,res)=>{
 // adding a comment for a test
 mongoose
     //.connect('mongodb+srv://healthNut32:workingHard@cluster0.7opmt.mongodb.net/DietData')
-    .connect(process.env.MONGO_URL)
+    .connect(process.env.MONGO_URI)
     .then(app.listen(PORT))
     .then(console.log('connected to database'))
     //heroku link: https://nutrition-plan2022.herokuapp.com/
     //.env file contains the following:
-    //MONGO_URL=mongodb+srv://healthNut32:workingHard@cluster0.7opmt.mongodb.net/DietData
+    //MONGO_URI=mongodb+srv://healthNut32:workingHard@cluster0.7opmt.mongodb.net/DietData
     //PORT=8080
     //secretKey=somesupersecretsecret
     
