@@ -1,4 +1,7 @@
 const express = require("express");
+const {
+    body
+} = require('express-validator')
 
 const foodController = require("../controllers/food");
 const isAuth = require("../middleware/is-auth");
@@ -66,7 +69,13 @@ router.get("/:id", foodController.getFoodItem);
  *          '500':
  *              description: System Error.
  */ 
-router.post("/add-food", isAuth, foodController.createFood);
+router.post("/add-food", isAuth, [
+    body('calories').trim().not().isEmpty(),
+    body('name').trim().not().isEmpty(),
+    body('description').trim().not().isEmpty(),
+    body('imageURL').trim().not().isEmpty()
+], foodController.createFood);
+
 
 // DELETE /food
 /** 
@@ -134,6 +143,11 @@ router.get("/user/:userId", isAuth, foodController.getAllUserFoods);
  *          '500':
  *              description: System error.
  */ 
-router.put("/update/:id", isAuth, foodController.updateFood);
+router.put("/update/:id", isAuth, [
+    body('calories').trim().not().isEmpty(),
+    body('name').trim().not().isEmpty(),
+    body('description').trim().not().isEmpty(),
+    body('imageURL').trim().not().isEmpty()
+], foodController.updateFood);
 
 module.exports = router;
